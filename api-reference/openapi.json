@@ -895,7 +895,7 @@
           "PROVIDER_CREDENTIALING",
           "CUSTOM_TASK"
         ],
-        "description": "The type of task to be executed"
+        "description": "The type of task to be executed. \n \n Note: tasks need to be enabled at the project level"
       },
       "CallType": {
         "type": "string",
