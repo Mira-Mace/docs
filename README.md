@@ -1,32 +1,45 @@
-# Mintlify Starter Kit
+# Mira Documentation
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+This repository contains the official documentation for Mira's API. Our documentation covers:
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+- Quick Start Guide
+- API Reference
+- Advanced Capabilities
+- Patient Management
+- Task Management
 
-### Development
+### Local Development
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+To preview the documentation locally, you'll need the [Mintlify CLI](https://www.npmjs.com/package/mintlify). Install it using:
 
-```
+```bash
 npm i -g mintlify
 ```
 
-Run the following command at the root of your documentation (where docs.json is)
+Then run the following command at the root of the documentation:
 
-```
+```bash
 mintlify dev
 ```
 
-### Publishing Changes
+### Making Changes
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+1. **Content Updates**
+   - Documentation files are in MDX format
+   - API specifications are in OpenAPI/Swagger format
+   - Images should be placed in the `/public` directory
 
-#### Troubleshooting
+2. **Configuration**
+   - Main configuration is in `docs.json`
+   - Theme and styling can be customized in the `colors` section
+   - Navigation structure is defined in the `navigation` section
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `docs.json`
+### Troubleshooting
+
+- If Mintlify dev isn't running, try `mintlify install` to reinstall dependencies
+- If a page loads as 404, ensure you're in the correct directory with `docs.json`
+- For logo/image issues, verify files exist in the `/public` directory
+
+### Need Help?
+
+Contact the development team at [support@miramace.com](mailto:support@miramace.com) for assistance.
