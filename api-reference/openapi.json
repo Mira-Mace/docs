@@ -9,12 +9,11 @@
       "post": {
         "operationId": "create_task",
         "summary": "Create a new task",
-        "description": "Create a new task to be executed by Mira's voice agent.\n\nThis endpoint creates a new task and handles the following:\n* Creates a new job if this is not a follow-up task\n* Uses existing job for follow-up tasks\n* Creates a LiveKit room for voice conversations\n* Dispatches an AI voice agent to execute the task",
         "x-codeSamples": [
           {
             "lang": "Python",
-            "label": "Schedule Appointment",
-            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/task'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'task_type': 'SCHEDULE_APPOINTMENT',\n    'task': 'Schedule a follow-up appointment with Dr. Smith for next week',\n    'phone_number': '+15555555555',\n    'project_id': 'proj_xyz789',\n    'patient_id': 'pat_abc123',\n    'task_data': {\n        'medical_context': 'Patient had knee surgery on March 15th, needs 2-week follow-up',\n        'timeframe_availability': 'Weekdays between 2-5pm',\n        'speciality_preferences': 'Orthopedic surgeon, preferably Dr. Smith',\n        'additional_context': 'Patient prefers afternoon appointments'\n    }\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\nprint(response.json())"
+            "label": "Appointment Scheduling",
+            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/task'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'task_type': 'SCHEDULE_APPOINTMENT',\n    'task': 'Schedule a follow-up appointment with Dr. Smith for next week',\n    'phone_number': '+15555555555',\n    'project_id': '123e4567-e89b-12d3-a456-426614174000',\n    'patient_id': '123e4567-e89b-12d3-a456-426614174001',\n    'task_data': {\n        'medical_context': 'Patient had knee surgery on March 15th, needs 2-week follow-up',\n        'timeframe_availability': 'Weekdays between 2-5pm',\n        'speciality_preferences': 'Orthopedic surgeon, preferably Dr. Smith',\n        'additional_context': 'Patient prefers afternoon appointments'\n    }\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\nprint(response.json())"
           },
           {
             "lang": "Python",
@@ -38,8 +37,8 @@
           },
           {
             "lang": "JavaScript",
-            "label": "Schedule Appointment",
-            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    task_type: 'SCHEDULE_APPOINTMENT',\n    task: 'Schedule a follow-up appointment with Dr. Smith for next week',\n    phone_number: '+15555555555',\n    project_id: 'proj_xyz789',\n    patient_id: 'pat_abc123',\n    task_data: {\n      medical_context: 'Patient had knee surgery on March 15th, needs 2-week follow-up',\n      timeframe_availability: 'Weekdays between 2-5pm',\n      speciality_preferences: 'Orthopedic surgeon, preferably Dr. Smith',\n      additional_context: 'Patient prefers afternoon appointments'\n    }\n  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
+            "label": "Appointment Scheduling",
+            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    task_type: 'SCHEDULE_APPOINTMENT',\n    task: 'Schedule a follow-up appointment with Dr. Smith for next week',\n    phone_number: '+15555555555',\n    project_id: '123e4567-e89b-12d3-a456-426614174000',\n    patient_id: '123e4567-e89b-12d3-a456-426614174001',\n    task_data: {\n      medical_context: 'Patient had knee surgery on March 15th, needs 2-week follow-up',\n      timeframe_availability: 'Weekdays between 2-5pm',\n      speciality_preferences: 'Orthopedic surgeon, preferably Dr. Smith',\n      additional_context: 'Patient prefers afternoon appointments'\n    }\n  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
           },
           {
             "lang": "JavaScript",
@@ -63,28 +62,50 @@
           },
           {
             "lang": "cURL",
-            "label": "Schedule Appointment",
-            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"SCHEDULE_APPOINTMENT\",\n    \"task\": \"Schedule a follow-up appointment with Dr. Smith for next week\",\n    \"phone_number\": \"+15555555555\",\n    \"project_id\": \"proj_xyz789\",\n    \"patient_id\": \"pat_abc123\",\n    \"task_data\": {\n      \"medical_context\": \"Patient had knee surgery on March 15th, needs 2-week follow-up\",\n      \"timeframe_availability\": \"Weekdays between 2-5pm\",\n      \"speciality_preferences\": \"Orthopedic surgeon, preferably Dr. Smith\",\n      \"additional_context\": \"Patient prefers afternoon appointments\"\n    }\n  }'"
+            "label": "Appointment Scheduling",
+            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"SCHEDULE_APPOINTMENT\",\n    \"task\": \"Schedule a follow-up appointment with Dr. Smith for next week\",\n    \"phone_number\": \"+15555555555\",\
+    \"project_id\": \"123e4567-e89b-12d3-a456-426614174000\",\
+    \"patient_id\": \"123e4567-e89b-12d3-a456-426614174001\",\
+    \"task_data\": {\
+      \"medical_context\": \"Patient had knee surgery on March 15th, needs 2-week follow-up\",\
+      \"timeframe_availability\": \"Weekdays between 2-5pm\",\
+      \"speciality_preferences\": \"Orthopedic surgeon, preferably Dr. Smith\",\
+      \"additional_context\": \"Patient prefers afternoon appointments\"\
+    }\
+  }'"
           },
           {
             "lang": "cURL",
-            "label": "Verify Insurance",
             "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"VERIFY_INSURANCE\",\n    \"task\": \"Verify insurance coverage for MRI\",\n    \"phone_number\": \"+15555555555\",\n    \"project_id\": \"proj_xyz789\",\n    \"patient_id\": \"pat_abc123\",\n    \"task_data\": {\n      \"service\": {\n        \"description\": \"MRI of right knee\",\n        \"cpt_codes\": [\"73721\"]\n      },\n      \"requirements\": \"Need to verify out-of-network coverage\",\n      \"additional_context\": \"Patient may need pre-authorization\"\n    }\n  }'"
           },
           {
             "lang": "cURL",
-            "label": "Insurance Reimbursement",
             "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"INSURANCE_REIMBURSEMENT\",\n    \"task\": \"Follow up on reimbursement for ER visit\",\n    \"phone_number\": \"+15555555555\",\n    \"project_id\": \"proj_xyz789\",\n    \"patient_id\": \"pat_abc123\",\n    \"task_data\": {\n      \"case_info\": {\n        \"number\": \"CASE-12345\"\n      },\n      \"bill\": {\n        \"number\": \"INV-12345\",\n        \"amount\": \"$1,250.00\"\n      },\n      \"reimbursement_status\": \"Pending\",\n      \"treatment_background\": \"Emergency room visit for broken arm\",\n      \"additional_context\": \"Need to reach billing department for invoice question\"\n    }\n  }'"
           },
           {
             "lang": "cURL",
-            "label": "Provider Credentialing",
             "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"PROVIDER_CREDENTIALING\",\n    \"task\": \"Check credentialing status for Dr. Smith\",\n    \"phone_number\": \"+15555555555\",\n    \"project_id\": \"proj_xyz789\",\n    \"patient_id\": \"pat_abc123\",\n    \"task_data\": {\n      \"provider\": {\n        \"name\": \"Dr. Jane Smith\",\n        \"npi\": \"1234567890\",\n        \"specialty\": \"Orthopedics\"\n      },\n      \"additional_context\": \"Verifying status of credentialing application submitted last month\"\n    }\n  }'"
           },
           {
             "lang": "cURL",
-            "label": "Custom Task",
-            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"CUSTOM_TASK\",\n    \"task\": \"Follow up on wheelchair delivery\",\n    \"phone_number\": \"+15555555555\",\n    \"project_id\": \"proj_xyz789\",\n    \"patient_id\": \"pat_abc123\",\n    \"task_data\": {\n      \"additional_context\": \"Check if the member has received their recent wheelchair delivery and if they have any questions about it\",\n      \"questions_to_ask\": [\n        {\n          \"question\": \"Have you received your wheelchair delivery?\",\n          \"context\": \"Delivery was scheduled for last Tuesday\"\n        },\n        {\n          \"question\": \"Is the wheelchair meeting your needs?\",\n          \"context\": \"This is a standard follow-up question\"\n        }\n      ]\n    }\n  }'"
+            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"CUSTOM_TASK\",\n    \"task\": \"Follow up on wheelchair delivery\",\
+    \"phone_number\": \"+15555555555\",\
+    \"project_id\": \"proj_xyz789\",\
+    \"patient_id\": \"pat_abc123\",\
+    \"task_data\": {\
+      \"additional_context\": \"Check if the member has received their recent wheelchair delivery and if they have any questions about it\",\
+      \"questions_to_ask\": [\
+        {\
+          \"question\": \"Have you received your wheelchair delivery?\",\
+          \"context\": \"Delivery was scheduled for last Tuesday\"\
+        },\
+        {\
+          \"question\": \"Is the wheelchair meeting your needs?\",\
+          \"context\": \"This is a standard follow-up question\"\
+        }\
+      ]\
+    }\
+  }'"
           }
         ],
         "requestBody": {
@@ -108,7 +129,7 @@
                 "example": {
                   "id": "task_123abc",
                   "project_id": "proj_xyz789",
-                  "patient_id": "pat_abc123",
+                  "patient_id": "pat_01HQ3MXKB3NZV8ZXGY4WQTHVR9",
                   "status": "PENDING",
                   "call_type": "OUTBOUND_CALL",
                   "task_type": "SCHEDULE_APPOINTMENT",
@@ -167,7 +188,8 @@
             "schema": {
               "type": "string",
               "format": "uuid",
-              "example": "ffaa02bc-eed2-49ae-aa34-34b3c3ce551d"
+              "description": "UUID of the task to retrieve",
+              "example": "123e4567-e89b-12d3-a456-426614174002"
             },
             "description": "The ID of the task to retrieve"
           },
@@ -253,15 +275,76 @@
         "x-codeSamples": [
           {
             "lang": "Python",
-            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/patient'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'project_id': 'proj_xyz789',\n    'phone_number': '+15555555555',\n    'email': 'patient@example.com',\n    'first_name': 'Jane',\n    'last_name': 'Doe'\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\nprint(response.json())"
+            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/patient'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'project_id': '123e4567-e89b-12d3-a456-426614174000',\n    'phone_number': '+15555555555',\n    'email': 'patient@example.com',\n    'first_name': 'Jane',\n    'last_name': 'Doe',\n    'date_of_birth': '1990-01-15',\n    'address': {\n        'street_name': '123 Market Street',\n        'city': 'San Francisco',\n        'state': 'CA',\n        'postal_code': '94105',\n        'country_code': 'US'\n    },\n    'primary_care_provider': {\n        'name': 'Dr. Sarah Smith',\n        'practice': 'SF Medical Group'\n    },\n    'insurance': {\n        'medical': [\n            {\n                'company_name': 'Blue Cross Blue Shield',\n                'member_id': 'BCB123456789',\n                'group_number': 'GRP987654',\n                'plan_name': 'PPO Gold',\n                'phone_number': '+18005551234',\n                'relationship_to_subscriber': 'SELF',\n                'primary_subscriber': {\n                    'first_name': 'Jane',\n                    'last_name': 'Doe'\n                }\n            }\n        ],\n        'dental': [\n            {\n                'company_name': 'Delta Dental',\n                'member_id': 'DDB123456789',\n                'group_number': 'GRPD123',\n                'plan_name': 'Premier Plan',\n                'phone_number': '+18005553456',\n                'relationship_to_subscriber': 'SELF',\n                'primary_subscriber': {\n                    'first_name': 'Jane',\n                    'last_name': 'Doe'\n                }\n            }\n        ],\n        'vision': [\n            {\n                'company_name': 'VSP',\n                'member_id': 'VSP123456789',\n                'group_number': 'GRPV123',\n                'plan_name': 'Vision Care',\n                'phone_number': '+18005554567',\n                'relationship_to_subscriber': 'SELF',\n                'primary_subscriber': {\n                    'first_name': 'Jane',\n                    'last_name': 'Doe'\n                }\n            }\n        ]\n    }\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\nprint(response.json())"
           },
           {
             "lang": "JavaScript",
-            "source": "const response = await fetch('https://api.miramace.com/v1/patient', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    project_id: 'proj_xyz789',\n    phone_number: '+15555555555',\n    email: 'patient@example.com',\n    first_name: 'Jane',\n    last_name: 'Doe'\n  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
+            "source": "const response = await fetch('https://api.miramace.com/v1/patient', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    project_id: '123e4567-e89b-12d3-a456-426614174000',\n    phone_number: '+15555555555',\n    email: 'patient@example.com',\n    first_name: 'Jane',\n    last_name: 'Doe',\n    date_of_birth: '1990-01-15',\n    address: {\n      street_name: '123 Market Street',\n      city: 'San Francisco',\n      state: 'CA',\n      postal_code: '94105',\n      country_code: 'US'\n    },\n    primary_care_provider: {\n      name: 'Dr. Sarah Smith',\n      practice: 'SF Medical Group'\n    },\n    insurance: {\n      medical: [\n        {\n          company_name: 'Blue Cross Blue Shield',\n          member_id: 'BCB123456789',\n          group_number: 'GRP987654',\n          plan_name: 'PPO Gold',\n          phone_number: '+18005551234',\n          relationship_to_subscriber: 'SELF',\n          primary_subscriber: {\n            first_name: 'Jane',\n            last_name: 'Doe'\n          }\n        }\n      ],\n      dental: [\n        {\n          company_name: 'Delta Dental',\n          member_id: 'DDB123456789',\n          group_number: 'GRPD123',\n          plan_name: 'Premier Plan',\n          phone_number: '+18005553456',\n          relationship_to_subscriber: 'SELF',\n          primary_subscriber: {\n            first_name: 'Jane',\n            last_name: 'Doe'\n          }\n        }\n      ],\n      vision: [\n        {\n          company_name: 'VSP',\n          member_id: 'VSP123456789',\n          group_number: 'GRPV123',\n          plan_name: 'Vision Care',\n          phone_number: '+18005554567',\n          relationship_to_subscriber: 'SELF',\n          primary_subscriber: {\n            first_name: 'Jane',\n            last_name: 'Doe'\n          }\n        }\n      ]\n    }\n  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
           },
           {
             "lang": "cURL",
-            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/patient \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"project_id\": \"proj_xyz789\",\n    \"phone_number\": \"+15555555555\",\n    \"email\": \"patient@example.com\",\n    \"first_name\": \"Jane\",\n    \"last_name\": \"Doe\"\n  }'"
+            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/patient \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"project_id\": \"123e4567-e89b-12d3-a456-426614174000\",\
+    \"phone_number\": \"+15555555555\",\
+    \"email\": \"patient@example.com\",\
+    \"first_name\": \"Jane\",\
+    \"last_name\": \"Doe\",\
+    \"date_of_birth\": \"1990-01-15\",\
+    \"address\": {\
+      \"street_name\": \"123 Market Street\",\
+      \"city\": \"San Francisco\",\
+      \"state\": \"CA\",\
+      \"postal_code\": \"94105\",\
+      \"country_code\": \"US\"\
+    },\
+    \"primary_care_provider\": {\
+      \"name\": \"Dr. Sarah Smith\",\
+      \"practice\": \"SF Medical Group\"\
+    },\
+    \"insurance\": {\
+      \"medical\": [\
+        {\
+          \"company_name\": \"Blue Cross Blue Shield\",\
+          \"member_id\": \"BCB123456789\",\
+          \"group_number\": \"GRP987654\",\
+          \"plan_name\": \"PPO Gold\",\
+          \"phone_number\": \"+18005551234\",\
+          \"relationship_to_subscriber\": \"SELF\",\
+          \"primary_subscriber\": {\
+            \"first_name\": \"Jane\",\
+            \"last_name\": \"Doe\"\
+          }\
+        }\
+      ],\
+      \"dental\": [\
+        {\
+          \"company_name\": \"Delta Dental\",\
+          \"member_id\": \"DDB123456789\",\
+          \"group_number\": \"GRPD123\",\
+          \"plan_name\": \"Premier Plan\",\
+          \"phone_number\": \"+18005553456\",\
+          \"relationship_to_subscriber\": \"SELF\",\
+          \"primary_subscriber\": {\
+            \"first_name\": \"Jane\",\
+            \"last_name\": \"Doe\"\
+          }\
+        }\
+      ],\
+      \"vision\": [\
+        {\
+          \"company_name\": \"VSP\",\
+          \"member_id\": \"VSP123456789\",\
+          \"group_number\": \"GRPV123\",\
+          \"plan_name\": \"Vision Care\",\
+          \"phone_number\": \"+18005554567\",\
+          \"relationship_to_subscriber\": \"SELF\",\
+          \"primary_subscriber\": {\
+            \"first_name\": \"Jane\",\
+            \"last_name\": \"Doe\"\
+          }\
+        }\
+      ]\
+    }\
+  }'"
           }
         ],
         "requestBody": {
@@ -280,17 +363,50 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PatientResponse"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "UUID of the created patient",
+                      "example": "123e4567-e89b-12d3-a456-426614174001"
+                    }
+                  }
                 },
                 "example": {
-                  "id": "pat_abc123",
-                  "project_id": "proj_xyz789",
-                  "phone_number": "+15555555555",
-                  "email": "patient@example.com",
-                  "first_name": "Jane",
-                  "last_name": "Doe",
-                  "created_at": "2024-03-20T10:00:00Z",
-                  "updated_at": "2024-03-20T10:00:00Z"
+                  "id": "123e4567-e89b-12d3-a456-426614174001"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing required fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "example": "Missing required fields"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "example": "Invalid API key"
+                    }
+                  }
                 }
               }
             }
@@ -311,7 +427,8 @@
             "schema": {
               "type": "string",
               "format": "uuid",
-              "example": "d7038030-aa24-4b89-a076-23c3fd29df34"
+              "description": "UUID of the patient to retrieve",
+              "example": "123e4567-e89b-12d3-a456-426614174001"
             },
             "description": "The ID of the patient to retrieve"
           }
@@ -319,15 +436,15 @@
         "x-codeSamples": [
           {
             "lang": "Python",
-            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/patient/d7038030-aa24-4b89-a076-23c3fd29df34'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY'\n}\n\nresponse = requests.get(url, headers=headers)\nprint(response.json())"
+            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/patient/d7038030-aa24-4b89-a076-23c3fd29df34'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\n\nresponse = requests.get(url, headers=headers)\nprint(response.json())"
           },
           {
             "lang": "JavaScript",
-            "source": "const response = await fetch('https://api.miramace.com/v1/patient/d7038030-aa24-4b89-a076-23c3fd29df34', {\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY'\n  }\n});\n\nconst data = await response.json();\nconsole.log(data);"
+            "source": "const response = await fetch('https://api.miramace.com/v1/patient/d7038030-aa24-4b89-a076-23c3fd29df34', {\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n  }\n});\n\nconst data = await response.json();\nconsole.log(data);"
           },
           {
             "lang": "cURL",
-            "source": "curl --request GET \\\n  --url https://api.miramace.com/v1/patient/d7038030-aa24-4b89-a076-23c3fd29df34 \\\n  --header 'Authorization: Bearer YOUR_API_KEY'"
+            "source": "curl --request GET \\\n  --url https://api.miramace.com/v1/patient/d7038030-aa24-4b89-a076-23c3fd29df34 \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json'"
           }
         ],
         "responses": {
@@ -337,6 +454,38 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PatientResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid patient ID format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "example": "Invalid patient ID format"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "example": "Invalid API key"
+                    }
+                  }
                 }
               }
             }
@@ -365,19 +514,388 @@
     "schemas": {
       "PhoneNumber": {
         "type": "string",
-        "description": "The phone number to call in E.164 format (e.g., +15555555555)",
+        "description": "The phone number in E.164 format (e.g., +15555555555)",
         "pattern": "^\\+[1-9]\\d{1,14}$",
         "example": "+15555555555"
+      },
+      "Date": {
+        "type": "string",
+        "format": "date",
+        "description": "Date in ISO 8601 format (YYYY-MM-DD)",
+        "example": "1990-01-01"
+      },
+      "Gender": {
+        "type": "string",
+        "enum": [
+          "MALE",
+          "FEMALE",
+          "OTHER",
+          "PREFER_NOT_TO_SAY"
+        ],
+        "description": "Gender of the patient"
+      },
+      "Address": {
+        "type": "object",
+        "required": [
+          "street_name",
+          "city",
+          "state",
+          "postal_code",
+          "country_code"
+        ],
+        "properties": {
+          "street_name": {
+            "type": "string",
+            "description": "Street address",
+            "example": "123 Main St"
+          },
+          "city": {
+            "type": "string",
+            "description": "City",
+            "example": "San Francisco"
+          },
+          "state": {
+            "type": "string",
+            "description": "State/province",
+            "example": "CA"
+          },
+          "postal_code": {
+            "type": "string",
+            "description": "Postal/ZIP code",
+            "example": "94105"
+          },
+          "country_code": {
+            "type": "string",
+            "description": "Two-letter country code",
+            "example": "US"
+          }
+        }
+      },
+      "MemberInsurance": {
+        "type": "object",
+        "properties": {
+          "company_name": {
+            "type": "string",
+            "description": "The name of the insurance company",
+            "example": "Blue Cross Blue Shield"
+          },
+          "member_id": {
+            "type": "string",
+            "description": "The member ID",
+            "example": "XYZ1234567"
+          },
+          "group_number": {
+            "type": "string",
+            "description": "The group number",
+            "example": "GRP123456"
+          },
+          "plan_name": {
+            "type": "string",
+            "description": "The plan name",
+            "example": "PPO Gold"
+          },
+          "phone_number": {
+            "$ref": "#/components/schemas/PhoneNumber",
+            "nullable": true
+          },
+          "relationship_to_subscriber": {
+            "$ref": "#/components/schemas/RelationshipToSubscriber"
+          },
+          "primary_subscriber": {
+            "$ref": "#/components/schemas/PrimarySubscriber"
+          }
+        }
+      },
+      "PrimarySubscriber": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "description": "The first name of the primary subscriber",
+            "example": "John"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name of the primary subscriber",
+            "example": "Doe"
+          }
+        }
+      },
+      "RelationshipToSubscriber": {
+        "type": "string",
+        "enum": [
+          "RELATIONSHIP_TO_SUBSCRIBER_UNSPECIFIED",
+          "SELF",
+          "SPOUSE",
+          "DEPENDENT"
+        ],
+        "description": "The relationship of the member to the primary subscriber",
+        "example": "SELF"
+      },
+      "PatientBase": {
+        "type": "object",
+        "required": [
+          "first_name",
+          "last_name",
+          "address"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email address of the patient"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "First name of the patient",
+            "example": "Jane"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Last name of the patient",
+            "example": "Doe"
+          },
+          "date_of_birth": {
+            "$ref": "#/components/schemas/Date"
+          },
+          "phone_number": {
+            "$ref": "#/components/schemas/PhoneNumber"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "primary_care_provider": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the patient's primary care provider"
+              },
+              "practice": {
+                "type": "string",
+                "description": "Practice name of the patient's primary care provider"
+              }
+            }
+          },
+          "insurance": {
+            "type": "object",
+            "properties": {
+              "medical": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MemberInsurance"
+                }
+              },
+              "dental": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MemberInsurance"
+                }
+              },
+              "vision": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MemberInsurance"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CreatePatientRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PatientBase"
+          },
+          {
+            "type": "object",
+            "required": [
+              "project_id",
+              "phone_number"
+            ],
+            "properties": {
+              "project_id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "UUID of the project this patient belongs to",
+                "example": "123e4567-e89b-12d3-a456-426614174000"
+              }
+            }
+          }
+        ]
+      },
+      "PatientResponse": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "format": "email",
+                "description": "Email address of the patient"
+              },
+              "first_name": {
+                "type": "string",
+                "description": "First name of the patient",
+                "example": "Jane"
+              },
+              "last_name": {
+                "type": "string",
+                "description": "Last name of the patient",
+                "example": "Doe"
+              },
+              "date_of_birth": {
+                "$ref": "#/components/schemas/Date"
+              },
+              "phone_number": {
+                "$ref": "#/components/schemas/PhoneNumber"
+              },
+              "address": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "primary_care_provider": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the patient's primary care provider"
+                  },
+                  "practice": {
+                    "type": "string",
+                    "description": "Practice name of the patient's primary care provider"
+                  }
+                }
+              },
+              "insurance": {
+                "type": "object",
+                "properties": {
+                  "medical": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/MemberInsurance"
+                    }
+                  },
+                  "dental": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/MemberInsurance"
+                    }
+                  },
+                  "vision": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/MemberInsurance"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "UUID of the patient",
+                "example": "123e4567-e89b-12d3-a456-426614174001"
+              },
+              "project_id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "UUID of the project this patient belongs to",
+                "example": "123e4567-e89b-12d3-a456-426614174000"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp when the patient was created"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp when the patient was last updated"
+              }
+            }
+          }
+        ],
+        "example": {
+          "id": "123e4567-e89b-12d3-a456-426614174001",
+          "project_id": "123e4567-e89b-12d3-a456-426614174000",
+          "email": "jane.doe@example.com",
+          "first_name": "Jane",
+          "last_name": "Doe",
+          "date_of_birth": "1990-01-15",
+          "phone_number": "+14155555555",
+          "address": {
+            "street_name": "123 Market Street",
+            "city": "San Francisco",
+            "state": "CA",
+            "postal_code": "94105",
+            "country_code": "US"
+          },
+          "primary_care_provider": {
+            "name": "Dr. Sarah Smith",
+            "practice": "SF Medical Group"
+          },
+          "insurance": {
+            "medical": [
+              {
+                "company_name": "Blue Cross Blue Shield",
+                "member_id": "BCB123456789",
+                "group_number": "GRP987654",
+                "plan_name": "PPO Gold",
+                "phone_number": "+18005551234",
+                "relationship_to_subscriber": "SELF",
+                "primary_subscriber": {
+                  "first_name": "Jane",
+                  "last_name": "Doe"
+                }
+              }
+            ],
+            "dental": [
+              {
+                "company_name": "Delta Dental",
+                "member_id": "DDB123456789",
+                "group_number": "GRPD123",
+                "plan_name": "Premier Plan",
+                "phone_number": "+18005553456",
+                "relationship_to_subscriber": "SELF",
+                "primary_subscriber": {
+                  "first_name": "Jane",
+                  "last_name": "Doe"
+                }
+              }
+            ],
+            "vision": [
+              {
+                "company_name": "VSP",
+                "member_id": "VSP123456789",
+                "group_number": "GRPV123",
+                "plan_name": "Vision Care",
+                "phone_number": "+18005554567",
+                "relationship_to_subscriber": "SELF",
+                "primary_subscriber": {
+                  "first_name": "Jane",
+                  "last_name": "Doe"
+                }
+              }
+            ]
+          },
+          "created_at": "2024-03-20T08:00:00Z",
+          "updated_at": "2024-03-20T08:00:00Z"
+        }
       },
       "TaskType": {
         "type": "string",
         "enum": [
-          "TASK_TYPE_UNSPECIFIED",
           "SCHEDULE_APPOINTMENT",
-          "GET_APPOINTMENT_DETAILS",
           "VERIFY_INSURANCE",
-          "INSURANCE_REIMBURSEMENT"
-        ]
+          "REIMBURSEMENT",
+          "PROVIDER_CREDENTIALING",
+          "CUSTOM_TASK"
+        ],
+        "description": "The type of task to be executed"
       },
       "CallType": {
         "type": "string",
@@ -423,14 +941,14 @@
           "project_id": {
             "type": "string",
             "format": "uuid",
-            "description": "ID of the project this task belongs to",
-            "example": "proj_xyz789"
+            "description": "UUID of the project this task belongs to",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
           },
           "patient_id": {
             "type": "string",
             "format": "uuid",
-            "description": "ID of the patient that this task is about",
-            "example": "pat_abc123"
+            "description": "UUID of the patient that this task is about",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
           },
           "task_data": {
             "oneOf": [
@@ -612,7 +1130,7 @@
               "mapping": {
                 "SCHEDULE_APPOINTMENT": "#/components/schemas/ScheduleAppointmentData",
                 "VERIFY_INSURANCE": "#/components/schemas/VerifyInsuranceData",
-                "INSURANCE_REIMBURSEMENT": "#/components/schemas/ReimbursementData",
+                "REIMBURSEMENT": "#/components/schemas/ReimbursementData",
                 "PROVIDER_CREDENTIALING": "#/components/schemas/ProviderCredentialingData",
                 "CUSTOM_TASK": "#/components/schemas/CustomTaskData"
               }
@@ -626,17 +1144,20 @@
           "id": {
             "type": "string",
             "format": "uuid",
-            "description": "Unique identifier for the task"
+            "description": "UUID of the task",
+            "example": "123e4567-e89b-12d3-a456-426614174002"
           },
           "project_id": {
             "type": "string",
             "format": "uuid",
-            "description": "ID of the project this task belongs to"
+            "description": "UUID of the project this task belongs to",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
           },
           "patient_id": {
             "type": "string",
             "format": "uuid",
-            "description": "ID of the patient that this task is about"
+            "description": "UUID of the patient that this task is about",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
           },
           "status": {
             "$ref": "#/components/schemas/TaskStatus"
@@ -677,79 +1198,6 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the task was last updated"
-          }
-        }
-      },
-      "CreatePatientRequest": {
-        "type": "object",
-        "required": [
-          "project_id",
-          "phone_number"
-        ],
-        "properties": {
-          "project_id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "ID of the project this patient belongs to"
-          },
-          "phone_number": {
-            "$ref": "#/components/schemas/PhoneNumber"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "Email address of the patient"
-          },
-          "first_name": {
-            "type": "string",
-            "description": "First name of the patient",
-            "example": "Jane"
-          },
-          "last_name": {
-            "type": "string",
-            "description": "Last name of the patient",
-            "example": "Doe"
-          }
-        }
-      },
-      "PatientResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Unique identifier for the patient"
-          },
-          "project_id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "ID of the project this patient belongs to"
-          },
-          "phone_number": {
-            "$ref": "#/components/schemas/PhoneNumber"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "Email address of the patient"
-          },
-          "first_name": {
-            "type": "string",
-            "description": "First name of the patient"
-          },
-          "last_name": {
-            "type": "string",
-            "description": "Last name of the patient"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Timestamp when the patient was created"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Timestamp when the patient was last updated"
           }
         }
       }
