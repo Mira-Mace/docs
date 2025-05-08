@@ -13,7 +13,7 @@
           {
             "lang": "Python",
             "label": "Appointment Scheduling",
-            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/task'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'task_type': 'SCHEDULE_APPOINTMENT',\n    'task': 'Schedule a follow-up appointment with Dr. Smith for next week',\n    'phone_number': '+15555555555',\n    'project_id': '123e4567-e89b-12d3-a456-426614174000',\n    'patient_id': '123e4567-e89b-12d3-a456-426614174001',\n    'task_data': {\n        'medical_context': 'Patient had knee surgery on March 15th, needs 2-week follow-up',\n        'timeframe_availability': 'Weekdays between 2-5pm',\n        'speciality_preferences': 'Orthopedic surgeon, preferably Dr. Smith',\n        'additional_context': 'Patient prefers afternoon appointments'\n    }\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\nprint(response.json())"
+            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/task'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'task_type': 'SCHEDULE_APPOINTMENT',\n    'task': 'Schedule a follow-up appointment with Dr. Smith for next week',\n    'phone_number': '+15555555555',\n    'project_id': '123e4567-e89b-12d3-a456-426614174000',\n    'patient_id': '123e4567-e89b-12d3-a456-426614174001',\n    'task_data': {\n        'timeframe_availability': 'Weekdays between 2-5pm',\n        'speciality_preferences': 'Orthopedic surgeon, preferably Dr. Smith',\n        'additional_context': 'Patient prefers afternoon appointments',\n        'previous_visits': [{\n            'purpose': 'Initial consultation for knee pain',\n            'date': '2024-03-15',\n            'outcome': 'Recommended physical therapy and follow-up'\n        }],\n        'patient_status': 'existing',\n        'has_referral': true,\n        'referral': {\n            'name': 'Dr. Robert Johnson',\n            'npi': '0987654321',\n            'specialty': 'Primary Care',\n            'practice': 'SF Medical Group',\n            'address': {\n                'street_name': '456 Health Ave',\n                'city': 'San Francisco',\n                'state': 'CA',\n                'postal_code': '94105',\n                'country_code': 'US'\n            },\n            'phone_number': '+14155555556'\n        },\n        'is_rescheduling': false,\n        'existing_appointment': null,\n        'reschedule_reason': null\n    }\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\nprint(response.json())"
           },
           {
             "lang": "Python",
@@ -33,12 +33,19 @@
           {
             "lang": "Python",
             "label": "Custom Task",
-            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/task'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'task_type': 'CUSTOM_TASK',\n    'task': 'Follow up on wheelchair delivery',\n    'phone_number': '+15555555555',\n    'project_id': 'proj_xyz789',\n    'patient_id': 'pat_abc123',\n    'task_data': {\n        'additional_context': 'Check if the member has received their recent wheelchair delivery and if they have any questions about it',\n        'questions_to_ask': [\n            {\n                'question': 'Have you received your wheelchair delivery?',\n                'context': 'Delivery was scheduled for last Tuesday'\n            },\n            {\n                'question': 'Is the wheelchair meeting your needs?',\n                'context': 'This is a standard follow-up question'\n            }\n        ]\n    }\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\nprint(response.json())"
+            "source": "import requests\n\nurl = 'https://api.miramace.com/v1/task'\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n}\npayload = {\n    'task_type': 'CUSTOM_TASK',\n    'task': 'Follow up on wheelchair delivery',\n    'phone_number': '+15555555555',\n    'project_id': 'proj_xyz789',\n    'patient_id': 'pat_abc123',\n    'task_data': {\n        'additional_context': 'Check if the member has received their recent wheelchair delivery and if they have any questions about it',\n        'questions_to_ask': [\n            {\n                'question': 'Have you received your wheelchair delivery?',\n                'context': 'Delivery was scheduled for last Tuesday'\n            },\
+        {\
+          question: 'Is the wheelchair meeting your needs?',\
+          context: 'This is a standard follow-up question'\
+        }\
+      ]\
+    }\
+  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
           },
           {
             "lang": "JavaScript",
             "label": "Appointment Scheduling",
-            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    task_type: 'SCHEDULE_APPOINTMENT',\n    task: 'Schedule a follow-up appointment with Dr. Smith for next week',\n    phone_number: '+15555555555',\n    project_id: '123e4567-e89b-12d3-a456-426614174000',\n    patient_id: '123e4567-e89b-12d3-a456-426614174001',\n    task_data: {\n      medical_context: 'Patient had knee surgery on March 15th, needs 2-week follow-up',\n      timeframe_availability: 'Weekdays between 2-5pm',\n      speciality_preferences: 'Orthopedic surgeon, preferably Dr. Smith',\n      additional_context: 'Patient prefers afternoon appointments'\n    }\n  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
+            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    task_type: 'SCHEDULE_APPOINTMENT',\n    task: 'Schedule a follow-up appointment with Dr. Smith for next week',\n    phone_number: '+15555555555',\n    project_id: '123e4567-e89b-12d3-a456-426614174000',\n    patient_id: '123e4567-e89b-12d3-a456-426614174001',\n    task_data: {\n      timeframe_availability: 'Weekdays between 2-5pm',\n      speciality_preferences: 'Orthopedic surgeon, preferably Dr. Smith',\n      additional_context: 'Patient prefers afternoon appointments',\n      previous_visits: [{\n        purpose: 'Initial consultation for knee pain',\n        date: '2024-03-15',\n        outcome: 'Recommended physical therapy and follow-up'\n      }],\n      patient_status: 'existing',\n      has_referral: true,\n      referral: {\n        name: 'Dr. Robert Johnson',\n        npi: '0987654321',\n        specialty: 'Primary Care',\n        practice: 'SF Medical Group',\n        address: {\n          street_name: '456 Health Ave',\n          city: 'San Francisco',\n          state: 'CA',\n          postal_code: '94105',\n          country_code: 'US'\n        },\n        phone_number: '+14155555556'\n      },\n      is_rescheduling: false,\n      existing_appointment: null,\n      reschedule_reason: null\n    }\n  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
           },
           {
             "lang": "JavaScript",
@@ -58,21 +65,29 @@
           {
             "lang": "JavaScript",
             "label": "Custom Task",
-            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    task_type: 'CUSTOM_TASK',\n    task: 'Follow up on wheelchair delivery',\n    phone_number: '+15555555555',\n    project_id: 'proj_xyz789',\n    patient_id: 'pat_abc123',\n    task_data: {\n      additional_context: 'Check if the member has received their recent wheelchair delivery and if they have any questions about it',\n      questions_to_ask: [\n        {\n          question: 'Have you received your wheelchair delivery?',\n          context: 'Delivery was scheduled for last Tuesday'\n        },\n        {\n          question: 'Is the wheelchair meeting your needs?',\n          context: 'This is a standard follow-up question'\n        }\n      ]\n    }\n  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
+            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    task_type: 'CUSTOM_TASK',\n    task: 'Follow up on wheelchair delivery',\
+    \"phone_number\": \"+15555555555\",\
+    \"project_id\": \"proj_xyz789\",\
+    \"patient_id\": \"pat_abc123\",\
+    \"task_data\": {\
+      \"additional_context\": \"Check if the member has received their recent wheelchair delivery and if they have any questions about it\",\
+      \"questions_to_ask\": [\
+        {\
+          \"question\": \"Have you received your wheelchair delivery?\",\
+          \"context\": \"Delivery was scheduled for last Tuesday\"\
+        },\
+        {\
+          \"question\": \"Is the wheelchair meeting your needs?\",\
+          \"context\": \"This is a standard follow-up question\"\
+        }\
+      ]\
+    }\
+  })\n});\n\nconst data = await response.json();\nconsole.log(data);"
           },
           {
             "lang": "cURL",
             "label": "Appointment Scheduling",
-            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"SCHEDULE_APPOINTMENT\",\n    \"task\": \"Schedule a follow-up appointment with Dr. Smith for next week\",\n    \"phone_number\": \"+15555555555\",\
-    \"project_id\": \"123e4567-e89b-12d3-a456-426614174000\",\
-    \"patient_id\": \"123e4567-e89b-12d3-a456-426614174001\",\
-    \"task_data\": {\
-      \"medical_context\": \"Patient had knee surgery on March 15th, needs 2-week follow-up\",\
-      \"timeframe_availability\": \"Weekdays between 2-5pm\",\
-      \"speciality_preferences\": \"Orthopedic surgeon, preferably Dr. Smith\",\
-      \"additional_context\": \"Patient prefers afternoon appointments\"\
-    }\
-  }'"
+            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"SCHEDULE_APPOINTMENT\",\n    \"task\": \"Schedule a follow-up appointment with Dr. Smith for next week\",\n    \"phone_number\": \"+15555555555\",\n    \"project_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"patient_id\": \"123e4567-e89b-12d3-a456-426614174001\",\n    \"task_data\": {\n      \"timeframe_availability\": \"Weekdays between 2-5pm\",\n      \"speciality_preferences\": \"Orthopedic surgeon, preferably Dr. Smith\",\n      \"additional_context\": \"Patient prefers afternoon appointments\",\n      \"previous_visits\": [{\n        \"purpose\": \"Initial consultation for knee pain\",\n        \"date\": \"2024-03-15\",\n        \"outcome\": \"Recommended physical therapy and follow-up\"\n      }],\n      \"patient_status\": \"existing\",\n      \"has_referral\": true,\n      \"referral\": {\n        \"name\": \"Dr. Robert Johnson\",\n        \"npi\": \"0987654321\",\n        \"specialty\": \"Primary Care\",\n        \"practice\": \"SF Medical Group\",\n        \"address\": {\n          \"street_name\": \"456 Health Ave\",\n          \"city\": \"San Francisco\",\n          \"state\": \"CA\",\n          \"postal_code\": \"94105\",\n          \"country_code\": \"US\"\n        },\n        \"phone_number\": \"+14155555556\"\n      },\n      \"is_rescheduling\": false,\n      \"existing_appointment\": null,\n      \"reschedule_reason\": null\n    }\n  }'"
           },
           {
             "lang": "cURL",
@@ -957,25 +972,46 @@
                 "title": "Schedule Appointment Data",
                 "description": "Data specific to scheduling appointments",
                 "properties": {
-                  "medical_context": {
-                    "type": "string",
-                    "description": "Medical context for the appointment",
-                    "example": "Patient had knee surgery on March 15th, needs 2-week follow-up"
-                  },
                   "timeframe_availability": {
                     "type": "string",
-                    "description": "Timeframe availability for the appointment",
-                    "example": "Weekdays between 2-5pm"
+                    "description": "Timeframe availability for the appointment"
                   },
                   "speciality_preferences": {
                     "type": "string",
-                    "description": "Speciality preferences for the appointment",
-                    "example": "Orthopedic surgeon, preferably Dr. Smith"
+                    "description": "Speciality preferences for the appointment"
                   },
                   "additional_context": {
                     "type": "string",
-                    "description": "Additional context for the appointment",
-                    "example": "Patient prefers afternoon appointments"
+                    "description": "Additional context for the appointment"
+                  },
+                  "previous_visits": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Visit"
+                    }
+                  },
+                  "patient_status": {
+                    "type": "string",
+                    "description": "Status of the patient (new or existing)"
+                  },
+                  "has_referral": {
+                    "type": "boolean",
+                    "description": "Whether the patient has a referral"
+                  },
+                  "referral": {
+                    "$ref": "#/components/schemas/Provider"
+                  },
+                  "is_rescheduling": {
+                    "type": "boolean",
+                    "description": "Whether this is a rescheduling"
+                  },
+                  "existing_appointment": {
+                    "type": "string",
+                    "description": "Details of the existing appointment (for rescheduling)"
+                  },
+                  "reschedule_reason": {
+                    "type": "string",
+                    "description": "Reason for rescheduling"
                   }
                 }
               },
@@ -1082,7 +1118,7 @@
                       "specialty": {
                         "type": "string",
                         "description": "The specialty of the provider",
-                        "example": "Orthopedics"
+                        "example": "Orthopedic Surgery"
                       }
                     }
                   },
@@ -1198,6 +1234,55 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the task was last updated"
+          }
+        }
+      },
+      "Visit": {
+        "type": "object",
+        "properties": {
+          "purpose": {
+            "type": "string",
+            "description": "The purpose of the visit",
+            "example": "Initial consultation"
+          },
+          "date": {
+            "$ref": "#/components/schemas/Date"
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome of the visit",
+            "example": "Referred to specialist"
+          }
+        }
+      },
+      "Provider": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the provider",
+            "example": "Dr. Jane Smith"
+          },
+          "npi": {
+            "type": "string",
+            "description": "National Provider Identifier",
+            "example": "1234567890"
+          },
+          "specialty": {
+            "type": "string",
+            "description": "Provider's specialty",
+            "example": "Orthopedic Surgery"
+          },
+          "practice": {
+            "type": "string",
+            "description": "Practice or facility name",
+            "example": "Bay Area Orthopedics"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "phone_number": {
+            "$ref": "#/components/schemas/PhoneNumber"
           }
         }
       }
