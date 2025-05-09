@@ -9,6 +9,7 @@
       "post": {
         "operationId": "create_task",
         "summary": "Create a new task",
+        "description": "Create a new task to be processed by the Mira platform.  \n\nWe offer these task types out of the box:\n\n• Appointment Scheduling: Schedule or reschedule medical appointments with preferred providers and timing.\n\n• Insurance Verification: Check insurance coverage, benefits, and pre-authorization requirements.\n\n• Insurance Reimbursement: Process and track insurance reimbursement claims.\n\n• Custom Healthcare Tasks: Execute flexible, healthcare-related tasks with configurable workflows.\n\nNeed a custom task type for your specific workflow? We can spin one for you quickly, contact us",
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -43,7 +44,7 @@
           {
             "lang": "JavaScript",
             "label": "Insurance Reimbursement",
-            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({\n    task_type: 'INSURANCE_REIMBURSEMENT',\
+            "source": "const response = await fetch('https://api.miramace.com/v1/task', {\n  method: 'POST',\
     \"phone_number\": \"+15555555555\",\
     \"project_id\": \"proj_xyz789\",\
     \"patient_id\": \"pat_abc123\",\
@@ -92,7 +93,7 @@
           {
             "lang": "cURL",
             "label": "Appointment Scheduling",
-            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"SCHEDULE_APPOINTMENT\",\n    \"task\": \"Schedule a follow-up appointment with Dr. Smith for next week\",\n    \"phone_number\": \"+15555555555\",\n    \"project_id\": \"123e4567-e89b-12d3-a456-426614174000\",\
+            "source": "curl --request POST \\\n  --url https://api.miramace.com/v1/task \\\n  --header 'Authorization: Bearer YOUR_API_KEY' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"task_type\": \"SCHEDULE_APPOINTMENT\",\n    \"task\": \"Schedule a follow-up appointment with Dr. Smith for next week\",\n    \"phone_number\": \"+15555555555\",\
     \"patient_id\": \"123e4567-e89b-12d3-a456-426614174001\",\
     \"task_data\": {\
       \"timeframe_availability\": \"Weekdays between 2-5pm\",\
@@ -1338,7 +1339,10 @@
                           "example": "Yes, I received it last Tuesday"
                         }
                       },
-                      "required": ["index", "question"]
+                      "required": [
+                        "index",
+                        "question"
+                      ]
                     }
                   }
                 }
@@ -1515,7 +1519,10 @@
         "properties": {
           "role": {
             "type": "string",
-            "enum": ["assistant", "user"],
+            "enum": [
+              "assistant",
+              "user"
+            ],
             "description": "The role of the speaker"
           },
           "content": {
